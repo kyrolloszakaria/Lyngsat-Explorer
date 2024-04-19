@@ -1,5 +1,5 @@
 import mysql.connector
-
+import private
 global current_user
 global is_logged_in
 is_logged_in = False
@@ -145,11 +145,11 @@ def connect_to_database():
     try:
         # Establish connection
         mydb = mysql.connector.connect(
-            host="lyngsat-tag-lyngsat-explorer.b.aivencloud.com",
-            user="avnadmin",
-            password="AVNS_1eDtsH1eGxrB8ijZJoN",
-            database="LyngsatDB",
-            port=15124
+            host=private.host,
+            user=private.user,
+            password=private.password,
+            database=private.database,
+            port=private.port
         )
         return mydb
     except mysql.connector.Error as e:
