@@ -2,7 +2,7 @@ import time
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from app_backend import *
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
