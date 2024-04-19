@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Location</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Your custom CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Enter your location to see the available channels from your Favorite list</h1>
+        <h2>Hello, {{ current_user }}</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('filter_channels') }}">Channels</a></li>
+            <!-- Add more navigation links for other functionalities -->
+        </ul>
+    </nav>
+    <section class="container">
+        <form action="{{ url_for('view_available_favorites') }}" method="post">
+            <h2>Choose Your continent</h2>
+            <label for="predefinedLocation">Choose a Location:</label>
+            <select id="predefinedLocation" name="predefinedLocation" required>
+                <option value="asia">Asia</option>
+                <option value="atlantic">Atlantic</option>
+                <option value="europe">Europe</option>
+                <option value="america">America</option>
+            </select>
+            <div class = "mini-vertical-space"></div>
+            <label for="encryption">Encryption:</label>
+            <select id="encryption" name="encryption">
+                <option value="both">Both</option>
+                <option value="encrypted">Encrypted</option>
+                <option value="free">Free</option>
+            </select>
+            <div class = "mini-vertical-space"></div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class = "vertical-space"></div>
+        <h2>Favorite Channels Viewable from This Location</h2>
+    <table id="channelTable">
+        <thead>
+            <tr>
+                <th>Channel Name</th>
+                <th>Frequency</th>
+                <th>Encryption</th>
+                <th>Satellite Name</th>
+                <th>Satellite Longitude</th>
+                <th>Continent</th>
+                
+                <!-- Add more table headers as needed -->
+            </tr>
+            {% for channel in channels %}
+            <tr>
+                <td>{{ channel[0] }}</td>
+                <td>{{ channel[1] }}</td>
+                <td>{{ channel[2] }}</td>
+                <td>{{ channel[3] }}</td>
+                <td>{{ channel[4] }}</td>
+                <td>{{ channel[5] }}</td>
+                </td>
+            </tr>
+            {% endfor %}
+        </thead>
+        <tbody>
+            <!-- Table rows will be populated dynamically using JavaScript -->
+        </tbody>
+    </table>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>User Registration</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <!-- Add more navigation links for other functionalities -->
+        </ul>
+    </nav>
+    <section class="container">
+        <h2>Register New User</h2>
+        <form action="{{ url_for('register') }}" method="post" onsubmit="showAlert()">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br>
+
+            <label for="birth_date">Birth Date:</label><br>
+            <input type="date" id="birth_date" name="birth_date" required><br>
+
+            <label for="location">Location:</label><br>
+            <input type="text" id="location" name="location" required><br>
+
+            <label for="region">Region:</label><br>
+            <input type="text" id="region" name="region" required><br>
+
+            <input type="submit" value="Register">
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2024 Kyrollos Z. Soliman - Supervision: Dr. Hossam Sahara</p>
+    </footer>
+</body>
+<script>
+    function showAlert() {
+        alert("User registered successfully!");
+    }
+</script>
+</html>

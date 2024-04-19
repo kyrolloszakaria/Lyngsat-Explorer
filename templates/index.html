@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Lyngsat Explorer</h1>
+        <h2>{{ welcome_message }}</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{url_for('register') }}">Register</a></li>
+            <li><a href="{{url_for('login')}}">Log in</a> </li>
+            <li><a href="{{ url_for('filter_channels') }}">Channels</a></li>
+            <li><a href="{{ url_for('Top_five') }}">Top 5</a></li>
+            <li><a href="{{ url_for('log_out') }}">Log out</a></li>
+            <!-- Add more navigation links for other functionalities -->
+        </ul>
+    </nav>
+    <section>
+        <p>This is the homepage of the Flask application. You can navigate to different functionalities using the links above.</p>
+    </section>
+</body>
+</html>

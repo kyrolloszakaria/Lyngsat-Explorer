@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Five</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Your custom CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Top Five</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('filter_channels') }}">Channels</a></li>
+            <!-- Add more navigation links for other functionalities -->
+        </ul>
+    </nav>
+    <section class="container">
+        <h2>Top 5 TV Networks/Providers by Number of Channels and average number of satellites</h2>
+        <table>
+            <tr>
+                <th>Network Name</th>
+                <th>Number of Channels</th>
+                <th>Average Satellites per Package</th>
+            </tr>
+            {% for network in top_networks %}
+            <tr>
+                <td>{{ network[0] }}</td>
+                <td>{{ network[1] }}</td>
+                <td>{{ network[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="vertical-space"></div>
+        <h2>Top 5 Rockets by Number of Satellites Launched</h2>
+        <table>
+            <tr>
+                <th>Rocket Name</th>
+                <th>Number of Satellites Launched</th>
+            </tr>
+            {% for rocket in top_rockets %}
+            <tr>
+                <td>{{ rocket[0] }}</td>
+                <td>{{ rocket[1] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="vertical-space"></div>
+        <h2>Top 5 Growing Satellites by Number of Channels Hosted</h2>
+        <table>
+            <tr>
+                <th>Satellite Name</th>
+                <th>Launch Date</th>
+                <th>Days since Launch</th>
+                <th>Growing Channels</th>
+                <th>Growth Rate</th>
+            </tr>
+            {% for satellite in top_satellites %}
+            <tr>
+                <td>{{ satellite[0] }}</td>
+                <td>{{ satellite[1] }}</td>
+                <td>{{ satellite[2] }}</td>
+                <td>{{ satellite[3] }}</td>
+                <td>{{ satellite[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="vertical-space"></div>
+        <h2>Top 5 Channels for Each Language by Number of Satellites</h2>
+        <h3>It is displayed as: Channel - Number of Satellites</h3>
+        {{ top_language_channels_html | safe }}
+       
+
+
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer>
+
+</body>
+</html>

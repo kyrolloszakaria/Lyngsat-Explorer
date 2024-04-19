@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channels</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <style>
+        /* Add custom CSS for horizontal alignment */
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        label {
+            flex: 1 0 20%;
+        }
+        select {
+            flex: 3 0 70%;
+        }
+        input[type="submit"] {
+            flex: 1 0 100%;
+            margin-top: 10px; /* Add margin for the submit button */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Channels</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('create_favorite_list') }}">Create Favorite List</a></li>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('view_favorite_list') }}">View Favorite Channels</a></li>
+            <li><a href="{{ url_for('view_channels_by_loc') }}">Filter Channels by Longitude</a></li>
+            <li><a href="{{ url_for('view_available_favorites') }}">View Available Favorite Channels</a></li>
+            <!-- Add more navigation links for other functionalities -->
+        </ul>
+    </nav>
+
+    <section class="container">
+        <h2>Filter Channels By</h2>
+        <form action="{{ url_for('filter_channels') }}" method="post">
+            <label for="region">Region:</label><br>
+            <select id="region" name="region" multiple>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Atlantic">Atlantic</option>
+                <option value="America">America</option>
+                <!-- Add more region options -->
+            </select><br>
+            
+            <label for="satellite">Satellite:</label><br>
+            <select id="satellite" name="satellite" multiple>
+                <option value="ABS 2">ABS 2</option>
+                <option value="ABS 2A">ABS 2A</option>
+                <option value="ABS 3A">ABS 3A</option>
+                <option value="ABS 6">ABS 6</option>
+                <option value="Al Yah 1">Al Yah 1</option>
+                <option value="Alcomsat 1">Alcomsat 1</option>
+                <option value="Amazonas 2">Amazonas 2</option>
+                <option value="Amazonas 3">Amazonas 3</option>
+                <option value="Amazonas 5">Amazonas 5</option>
+                <option value="Amazonas Nexus">Amazonas Nexus</option>
+                <option value="AMC 15">AMC 15</option>
+                <option value="AMC 6">AMC 6</option>
+                <option value="Amos 17">Amos 17</option>
+                <option value="Amos 3">Amos 3</option>
+                <option value="Amos 4">Amos 4</option>
+                <option value="Amos 7">Amos 7</option>
+                <option value="Angosat 2">Angosat 2</option>
+                <option value="Anik F1R ">Anik F1R </option>
+                <option value="Anik F2 ">Anik F2 </option>
+                <option value="Anik F3">Anik F3</option>
+                <option value="Anik F4">Anik F4</option>
+                <option value="Anik G1">Anik G1</option>
+                <option value="Apstar 6C">Apstar 6C</option>
+                <option value="Apstar 6D">Apstar 6D</option>
+                <option value="Apstar 7">Apstar 7</option>
+                <option value="Apstar 9">Apstar 9</option>
+                <option value="Arabsat 5A">Arabsat 5A</option>
+                <option value="Arabsat 5C">Arabsat 5C</option>
+                <option value="Arabsat 6A">Arabsat 6A</option>
+                <option value="Arsat 1">Arsat 1</option>
+                <option value="Arsat 2">Arsat 2</option>
+                <option value="AsiaSat 5">AsiaSat 5</option>
+                <option value="AsiaSat 6/Thaicom 7">AsiaSat 6/Thaicom 7</option>
+                <option value="AsiaSat 7">AsiaSat 7</option>
+                <option value="AsiaSat 9">AsiaSat 9</option>
+                <option value="Astra 1KR">Astra 1KR</option>
+                <option value="Astra 1L">Astra 1L</option>
+                <option value="Astra 1M">Astra 1M</option>
+                <option value="Astra 1N">Astra 1N</option>
+                <option value="Astra 2E ">Astra 2E </option>
+                <option value="Astra 2F ">Astra 2F </option>
+                <option value="Astra 2G ">Astra 2G </option>
+                <option value="Astra 3B">Astra 3B</option>
+                <option value="Astra 3C">Astra 3C</option>
+                <option value="Astra 4A">Astra 4A</option>
+                <option value="Azerspace 1">Azerspace 1</option>
+                <option value="Azerspace 2/Intelsat 38">Azerspace 2/Intelsat 38</option>
+                <option value="Badr 4">Badr 4</option>
+                <option value="Badr 5">Badr 5</option>
+                <option value="Badr 6 ">Badr 6 </option>
+                <option value="Badr 7">Badr 7</option>
+                <option value="Badr 8">Badr 8</option>
+                <option value="Bangabandhu 1">Bangabandhu 1</option>
+                <option value="Belintersat 1 ">Belintersat 1 </option>
+                <option value="BRIsat">BRIsat</option>
+                <option value="BSAT 3A">BSAT 3A</option>
+                <option value="BSAT 3C/JCSAT 110R">BSAT 3C/JCSAT 110R</option>
+                <option value="BSAT 4A">BSAT 4A</option>
+                <option value="BSAT 4B">BSAT 4B</option>
+                <option value="BulgariaSat 1">BulgariaSat 1</option>
+                <option value="ChinaSat 10">ChinaSat 10</option>
+                <option value="ChinaSat 11">ChinaSat 11</option>
+                <option value="ChinaSat 12">ChinaSat 12</option>
+                <option value="ChinaSat 19">ChinaSat 19</option>
+                <option value="ChinaSat 2D">ChinaSat 2D</option>
+                <option value="ChinaSat 6B ">ChinaSat 6B </option>
+                <option value="ChinaSat 6C">ChinaSat 6C</option>
+                <option value="ChinaSat 6D">ChinaSat 6D</option>
+                <option value="ChinaSat 6E">ChinaSat 6E</option>
+                <option value="ChinaSat 9">ChinaSat 9</option>
+                <option value="ChinaSat 9B">ChinaSat 9B</option>
+                <option value="Cosmos 2520">Cosmos 2520</option>
+                <option value="Cosmos 2526">Cosmos 2526</option>
+                <option value="EchoStar 10">EchoStar 10</option>
+                <option value="EchoStar 105/SES 11">EchoStar 105/SES 11</option>
+                <option value="EchoStar 11">EchoStar 11</option>
+                <option value="EchoStar 14">EchoStar 14</option>
+                <option value="EchoStar 16">EchoStar 16</option>
+                <option value="EchoStar 23">EchoStar 23</option>
+                <option value="("Es'hail 1",)">("Es'hail 1",)</option>
+                <option value="("Es'hail 2",)">("Es'hail 2",)</option>
+                <option value="Eutelsat 10B">Eutelsat 10B</option>
+                <option value="Eutelsat 113 West A ">Eutelsat 113 West A </option>
+                <option value="Eutelsat 115 West B">Eutelsat 115 West B</option>
+                <option value="Eutelsat 117 West A">Eutelsat 117 West A</option>
+                <option value="Eutelsat 117 West B">Eutelsat 117 West B</option>
+                <option value="Eutelsat 16A">Eutelsat 16A</option>
+                <option value="Eutelsat 172B">Eutelsat 172B</option>
+                <option value="Eutelsat 21B">Eutelsat 21B</option>
+                <option value="Eutelsat 33E ">Eutelsat 33E </option>
+                <option value="Eutelsat 33F">Eutelsat 33F</option>
+                <option value="Eutelsat 36B">Eutelsat 36B</option>
+                <option value="Eutelsat 3B">Eutelsat 3B</option>
+                <option value="Eutelsat 5 West B">Eutelsat 5 West B</option>
+                <option value="Eutelsat 65 West A">Eutelsat 65 West A</option>
+                <option value="Eutelsat 7 West A">Eutelsat 7 West A</option>
+                <option value="Eutelsat 70B">Eutelsat 70B</option>
+                <option value="Eutelsat 7B">Eutelsat 7B</option>
+                <option value="Eutelsat 7C">Eutelsat 7C</option>
+                <option value="Eutelsat 8 West B">Eutelsat 8 West B</option>
+                <option value="Eutelsat 9B">Eutelsat 9B</option>
+                <option value="Eutelsat Ka-Sat 9A">Eutelsat Ka-Sat 9A</option>
+                <option value="Express 103">Express 103</option>
+                <option value="Express 80">Express 80</option>
+                <option value="Express AM44 ">Express AM44 </option>
+                <option value="Express AM5">Express AM5</option>
+                <option value="Express AM6 ">Express AM6 </option>
+                <option value="Express AM7">Express AM7</option>
+                <option value="Express AM8">Express AM8</option>
+                <option value="Express AMU1 ">Express AMU1 </option>
+                <option value="Express AMU3">Express AMU3</option>
+                <option value="Express AMU7">Express AMU7</option>
+                <option value="Express AT1">Express AT1</option>
+                <option value="Express AT2">Express AT2</option>
+                <option value="G-Sat 10">G-Sat 10</option>
+                <option value="G-Sat 15">G-Sat 15</option>
+                <option value="G-Sat 17">G-Sat 17</option>
+                <option value="G-Sat 18">G-Sat 18</option>
+                <option value="G-Sat 24">G-Sat 24</option>
+                <option value="G-Sat 30">G-Sat 30</option>
+                <option value="G-Sat 8">G-Sat 8</option>
+                <option value="G-Sat 9">G-Sat 9</option>
+                <option value="Galaxy 13/Horizons 1">Galaxy 13/Horizons 1</option>
+                <option value="Galaxy 16">Galaxy 16</option>
+                <option value="Galaxy 17 ">Galaxy 17 </option>
+                <option value="Galaxy 18">Galaxy 18</option>
+                <option value="Galaxy 19">Galaxy 19</option>
+                <option value="Galaxy 28 ">Galaxy 28 </option>
+                <option value="Galaxy 30">Galaxy 30</option>
+                <option value="Galaxy 31">Galaxy 31</option>
+                <option value="Galaxy 32">Galaxy 32</option>
+                <option value="Galaxy 33">Galaxy 33</option>
+                <option value="Galaxy 34">Galaxy 34</option>
+                <option value="Galaxy 35">Galaxy 35</option>
+                <option value="Galaxy 36">Galaxy 36</option>
+                <option value="Galaxy 37/Horizons 4">Galaxy 37/Horizons 4</option>
+                <option value="Galaxy 3C ">Galaxy 3C </option>
+                <option value="Hellas Sat 3">Hellas Sat 3</option>
+                <option value="Hellas Sat 4">Hellas Sat 4</option>
+                <option value="Hispasat 30W-5">Hispasat 30W-5</option>
+                <option value="Hispasat 30W-6">Hispasat 30W-6</option>
+                <option value="Hispasat 74W-1">Hispasat 74W-1</option>
+                <option value="Horizons 3e">Horizons 3e</option>
+                <option value="Hotbird 13F">Hotbird 13F</option>
+                <option value="Hotbird 13G">Hotbird 13G</option>
+                <option value="Intelsat 10-02 ">Intelsat 10-02 </option>
+                <option value="Intelsat 14">Intelsat 14</option>
+                <option value="Intelsat 15">Intelsat 15</option>
+                <option value="Intelsat 17">Intelsat 17</option>
+                <option value="Intelsat 18">Intelsat 18</option>
+                <option value="Intelsat 19">Intelsat 19</option>
+                <option value="Intelsat 20">Intelsat 20</option>
+                <option value="Intelsat 21">Intelsat 21</option>
+                <option value="Intelsat 22">Intelsat 22</option>
+                <option value="Intelsat 23">Intelsat 23</option>
+                <option value="Intelsat 28">Intelsat 28</option>
+                <option value="Intelsat 30">Intelsat 30</option>
+                <option value="Intelsat 31">Intelsat 31</option>
+                <option value="Intelsat 33e">Intelsat 33e</option>
+                <option value="Intelsat 34">Intelsat 34</option>
+                <option value="Intelsat 35e">Intelsat 35e</option>
+                <option value="Intelsat 36">Intelsat 36</option>
+                <option value="Intelsat 37e">Intelsat 37e</option>
+                <option value="Intelsat 39">Intelsat 39</option>
+                <option value="Intelsat 40e">Intelsat 40e</option>
+                <option value="Intelsat 901">Intelsat 901</option>
+                <option value="JCSAT 12">JCSAT 12</option>
+                <option value="JCSAT 15">JCSAT 15</option>
+                <option value="JCSAT 16">JCSAT 16</option>
+                <option value="JCSAT 1C">JCSAT 1C</option>
+                <option value="JCSAT 2B">JCSAT 2B</option>
+                <option value="JCSAT 3A">JCSAT 3A</option>
+                <option value="JCSAT 4B">JCSAT 4B</option>
+                <option value="JCSAT 5A">JCSAT 5A</option>
+                <option value="Jupiter 3/EchoStar 24">Jupiter 3/EchoStar 24</option>
+                <option value="KazSat 2">KazSat 2</option>
+                <option value="KazSat 3">KazSat 3</option>
+                <option value="Koreasat 5">Koreasat 5</option>
+                <option value="Koreasat 5A">Koreasat 5A</option>
+                <option value="Koreasat 6">Koreasat 6</option>
+                <option value="Koreasat 7">Koreasat 7</option>
+                <option value="LaoSat 1">LaoSat 1</option>
+                <option value="Measat 3a">Measat 3a</option>
+                <option value="Measat 3b">Measat 3b</option>
+                <option value="Measat 3d">Measat 3d</option>
+                <option value="Merah Putih 2">Merah Putih 2</option>
+                <option value="NigComSat 1R">NigComSat 1R</option>
+                <option value="Nilesat 201">Nilesat 201</option>
+                <option value="Nilesat 301">Nilesat 301</option>
+                <option value="Nimiq 4">Nimiq 4</option>
+                <option value="Nimiq 5">Nimiq 5</option>
+                <option value="Nimiq 6">Nimiq 6</option>
+                <option value="NSS 10 ">NSS 10 </option>
+                <option value="NSS 12">NSS 12</option>
+                <option value="NSS 9">NSS 9</option>
+                <option value="Nusantara Satu">Nusantara Satu</option>
+                <option value="Optus 10">Optus 10</option>
+                <option value="Optus D1 ">Optus D1 </option>
+                <option value="Optus D2">Optus D2</option>
+                <option value="Optus D3">Optus D3</option>
+                <option value="Paksat 1R">Paksat 1R</option>
+                <option value="QuetzSat 1">QuetzSat 1</option>
+                <option value="Rascom QAF 1R">Rascom QAF 1R</option>
+                <option value="SES 1">SES 1</option>
+                <option value="SES 10">SES 10</option>
+                <option value="SES 12">SES 12</option>
+                <option value="SES 14">SES 14</option>
+                <option value="SES 15">SES 15</option>
+                <option value="SES 18">SES 18</option>
+                <option value="SES 19">SES 19</option>
+                <option value="SES 2">SES 2</option>
+                <option value="SES 20">SES 20</option>
+                <option value="SES 21">SES 21</option>
+                <option value="SES 22">SES 22</option>
+                <option value="SES 3">SES 3</option>
+                <option value="SES 4">SES 4</option>
+                <option value="SES 5">SES 5</option>
+                <option value="SES 6">SES 6</option>
+                <option value="SES 7">SES 7</option>
+                <option value="SES 8">SES 8</option>
+                <option value="SES 9">SES 9</option>
+                <option value="Sirius XM 5">Sirius XM 5</option>
+                <option value="Sirius XM 8">Sirius XM 8</option>
+                <option value="Sky Brasil 1">Sky Brasil 1</option>
+                <option value="Sky Mexico 1">Sky Mexico 1</option>
+                <option value="ST 2">ST 2</option>
+                <option value="Star One C2">Star One C2</option>
+                <option value="Star One C3">Star One C3</option>
+                <option value="Star One C4">Star One C4</option>
+                <option value="Star One D1">Star One D1</option>
+                <option value="Star One D2">Star One D2</option>
+                <option value="Superbird B3">Superbird B3</option>
+                <option value="Superbird C2 ">Superbird C2 </option>
+                <option value="T16">T16</option>
+                <option value="T5 ">T5 </option>
+                <option value="T8">T8</option>
+                <option value="T9S ">T9S </option>
+                <option value="TÃ¼rksat 3A">TÃ¼rksat 3A</option>
+                <option value="TÃ¼rksat 4A">TÃ¼rksat 4A</option>
+                <option value="TÃ¼rksat 4B">TÃ¼rksat 4B</option>
+                <option value="TÃ¼rksat 5A">TÃ¼rksat 5A</option>
+                <option value="TÃ¼rksat 5B">TÃ¼rksat 5B</option>
+                <option value="Telkom 3S">Telkom 3S</option>
+                <option value="Telkom 4">Telkom 4</option>
+                <option value="Telstar 11N">Telstar 11N</option>
+                <option value="Telstar 12 Vantage">Telstar 12 Vantage</option>
+                <option value="Telstar 14R">Telstar 14R</option>
+                <option value="Telstar 18 Vantage ">Telstar 18 Vantage </option>
+                <option value="Thaicom 4">Thaicom 4</option>
+                <option value="Thaicom 6">Thaicom 6</option>
+                <option value="Thaicom 8">Thaicom 8</option>
+                <option value="Thor 5">Thor 5</option>
+                <option value="Thor 6">Thor 6</option>
+                <option value="Thor 7">Thor 7</option>
+                <option value="TKSat 1">TKSat 1</option>
+                <option value="TurkmenÃ„lem/MonacoSat">TurkmenÃ„lem/MonacoSat</option>
+                <option value="ViaSat 3 Americas">ViaSat 3 Americas</option>
+                <option value="Vinasat 1">Vinasat 1</option>
+                <option value="Vinasat 2">Vinasat 2</option>
+                <option value="XM 3">XM 3</option>
+                <option value="Yamal 401">Yamal 401</option>
+                <option value="Yamal 402">Yamal 402</option>
+                <option value="Yamal 601">Yamal 601</option>
+            </select><br>
+            
+            <label for="quality">Quality:</label><br>
+            <select id="quality" name="quality" multiple>
+                <option value="HD">HD</option>
+                <option value="SD">SD</option>
+                <!-- Add more quality options -->
+            </select><br>
+            
+            <label for="language">Language:</label><br>
+            <select id="language" name="language" multiple>
+                <option value="Ind">Indonesian</option>
+                <option value="Rus">Russian</option>
+                <option value="Eng">English</option>
+                <option value="Hin">Hindi</option>
+                <option value="None">None</option>
+                <option value="Spa">Spanish</option>
+                <option value="Por">Portuguese</option>
+                <option value="Ara">Arabic</option>
+                <option value="Mon">Mongolian</option>
+                <option value="Geo">Georgian</option>
+                <option value="Ger">German</option>
+                <option value="Ukr">Ukrainian</option>
+                <option value="Tel">Telugu</option>
+                <option value="Heb">Hebrew</option>
+                <option value="Dut">Dutch</option>
+                <option value="Fre">French</option>
+                <option value="Tha">Thai</option>
+                <option value="Pol">Polish</option>
+                <option value="Prs">Persian</option>
+                <option value="Ita">Italian</option>
+                <option value="Bul">Bulgarian</option>
+                <option value="Hrv">Croatian</option>
+                <option value="Srp">Serbian</option>
+                <option value="Mal">Malay</option>
+                <option value="Tur">Turkish</option>
+                <option value="Alb">Albanian</option>
+                <option value="Kaz">Kazakh</option>
+                <option value="Lav">Latvian</option>
+                <option value="Bur">Burmese</option>
+                <option value="Kur">Kurdish</option>
+                <option value="Per">Persian</option>
+                <option value="Gre">Greek</option>
+                <option value="Dan">Danish</option>
+                <option value="Urd">Urdu</option>
+                <option value="Amh">Amharic</option>
+                <option value="Tam">Tamil</option>
+                <option value="Chi">Chinese</option>
+                <option value="Tgl">Tagalog</option>
+                <option value="Kor">Korean</option>
+                <option value="Mar">Marathi</option>
+                <option value="Pan">Punjabi</option>
+                <option value="Sin">Sinhalese</option>
+                <option value="Cze">Czech</option>
+                <option value="Rum">Romanian</option>
+                <option value="Ben">Bengali</option>
+                <option value="Kan">Kannada</option>
+                <option value="Khm">Khmer</option>
+                <option value="Nep">Nepali</option>
+                <option value="Orm">Oromo</option>
+                <option value="Guj">Gujarati</option>
+                <option value="Hau">Hausa</option>
+                <option value="Yor">Yoruba</option>
+                <option value="Swa">Swahili</option>
+                <option value="Ibo">Igbo</option>
+                <option value="Asm">Assamese</option>
+                <option value="Ori">Oriya</option>
+                <option value="Kir">Kirghiz</option>
+                <option value="Bos">Bosnian</option>
+                <option value="Mac">Macedonian</option>
+                <option value="Tuk">Turkmen</option>
+                <option value="Hun">Hungarian</option>
+                <option value="Qaa">Qaa</option>
+                <option value="Vie">Vietnamese</option>
+                <option value="Jpn">Japanese</option>
+                <option value="Ber">Berber</option>
+                <option value="Aze">Azerbaijani</option>
+                <option value="Slo">Slovak</option>
+                <option value="Arm">Armenian</option>
+                <option value="Slv">Slovenian</option>
+                <option value="Som">Somali</option>
+                <option value="Tir">Tigrinya</option>
+                <option value="Div">Divehi</option>
+                <option value="Syr">Syriac</option>
+                <option value="Yue">Yue</option>
+                <option value="May">Malayalam</option>
+                <option value="Hok">Hokkien</option>
+                <option value="Swe">Swedish</option>
+                <option value="Nor">Norwegian</option>
+                <option value="Bho">Bhojpuri</option>
+                <option value="Tgk">Tajik</option>
+                <option value="Lit">Lithuanian</option>
+                <option value="Wel">Welsh</option>
+                <option value="Pus">Pashto</option>
+                <option value="Uzb">Uzbek</option>
+                <option value="Bel">Belarusian</option>
+                <option value="Ltz">Luxembourgish</option>
+                <option value="Lao">Lao</option>
+                <option value="Jav">Javanese</option>
+                <option value="Tib">Tibetan</option>
+                <option value="Uig">Uighur</option>
+                <option value="Gle">Irish</option>
+                <option value="Fin">Finnish</option>
+                <option value="Est">Estonian</option>
+                <option value="Baq">Basque</option>
+                <option value="Tet">Tetum</option>
+                <option value="Afr">Afrikaans</option>
+                <option value="Run">Rundi</option>
+                <option value="Nbl">Ndebele</option>
+                <option value="Sot">Sotho</option>
+                <option value="Ssw">Swazi</option>
+                <option value="F">Fulah</option>
+                <option value="Nya">Chichewa</option>
+                <option value="Zul">Zulu</option>
+                <option value="Tsn">Tswana</option>
+                <option value="Tso">Tsonga</option>
+                <option value="Ewe">Ewe</option>
+                <option value="Ven">Venda</option>
+                <option value="Glg">Galician</option>
+                <option value="Roh">Romansh</option>
+                <option value="Lug">Luganda</option>
+                <option value="Ice">Icelandic</option>
+                <option value="Ful">Fulani</option>
+                <option value="Man">Manx</option>
+                <option value="Cat">Catalan</option>
+                <option value="Lah">Lahnda</option>
+                <option value="Nso">Northern Sotho</option>
+                <option value="Sp">Spanish</option>
+                <option value="Xho">Xhosa</option>                
+            </select><br>
+            <input type="button" value="Clear Selection" onclick="clearSelections()" class="form-btn">
+            <input type="submit" value="View Channels" class="form-btn">
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer>
+    <script>
+        function clearSelections() {
+            document.getElementById("region").selectedIndex = -1;
+            document.getElementById("satellite").selectedIndex = -1;
+            document.getElementById("quality").selectedIndex = -1;
+            document.getElementById("language").selectedIndex = -1;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+/* Reset default margin and padding */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set body font and background color */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation styles */
+nav {
+    background-color: #666;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #ffd700; /* Change color on hover */
+}
+
+/* Section styles */
+section {
+    padding: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+
+/* form */
+/* Form container */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--oxford-blue);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form title */
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--peach);
+}
+
+/* Form input labels */
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--peach);
+}
+
+/* Form input fields */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--oxford-blue);
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: var(--peach);
+    color: var(--rich-black);
+}
+
+/* Form submit button */
+.form-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--oxford-blue);
+    color: var(--peach);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-btn:hover {
+    background-color: var(--xanthous);
+}
+
+        /* Add CSS for table border */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black; /* Add border to table cells */
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2; /* Add background color for header row */
+        }
+
+    /* CSS for flashed messages */
+.flash-messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.flash-messages ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.flash-messages li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Success message */
+.flash-messages .success {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+/* Error message */
+.flash-messages .error {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+/* Apply styles to the unordered list */
+ul {
+    list-style-type: decimal; /* Use decimal numbering */
+    padding: 0; /* Remove default padding */
+}
+
+/* Apply styles to list items */
+li {
+    margin-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px; /* Add some space between each list item */
+    font-size: 18px; /* Increase font size */
+}
+
+    /* Apply margin to create vertical space */
+    .vertical-space {
+        margin-bottom: 50px; /* Adjust the value as needed */
+    }
+
+    .mini-vertical-space {
+        margin-bottom: 20px; /* Adjust the value as needed */
+    }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Channels</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %} -->
+
+    <header>
+        <h1>Create Favorite List</h1>
+        <h2>Hello, {{ current_user }}</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('filter_channels') }}">Channels</a></li>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <!-- Add more navigation links for other functionalities -->
+        </ul>
+    </nav>
+    
+    <section class="container">
+        <form action="{{ url_for('create_favorite_list') }}" method="post" onsubmit="prepareSelectedChannels()">
+            <input type="text" id="searchInput" name="search" placeholder="Search by channel name or frequency">
+            <input class="btn" type="submit" value="Add to my Favorite List">
+            <input type="hidden" id="selectedChannels" name="selected_channels"> <!-- Hidden input field to store selected channels -->
+        </form>
+        <form action="{{ url_for('create_favorite_list') }}" method="post">
+            <table id="channelTable">
+                <tr>
+                    <th>Select</th>
+                    <th>Channel Name</th>
+                    <th>Frequency</th>
+                </tr>
+                {% for channel in channels %}
+                <tr>
+                    <td><input type="checkbox" name="selected_channels" value="{{ channel[1] }}|{{ channel[10] }}"></td>
+                    <td>{{ channel[1] }}</td>
+                    <td>{{ channel[10] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer>
+
+    <script>
+        function prepareSelectedChannels() {
+                return new Promise(resolve => {
+                    var selectedChannels = [];
+                    var checkboxes = document.querySelectorAll('input[name="selected_channels"]:checked');
+                    checkboxes.forEach(function(checkbox) {
+                        selectedChannels.push(checkbox.value);
+                    });
+                    document.getElementById('selectedChannels').value = selectedChannels.join(',');
+                    // Display a pop-up message
+                    alert("Channels added to favorite list successfully!");
+
+                    resolve(); // Resolve the promise when the function completes
+                });
+            }
+        document.getElementById("searchInput").addEventListener("input", function() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("channelTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                if (td) {
+                    var found = false;
+                    for (var j = 1; j < td.length; j++) { // Start from index 1 to skip first column (checkbox)
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

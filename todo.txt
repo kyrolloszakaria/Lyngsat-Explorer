@@ -1,0 +1,24 @@
+TODO:
+2. change copy rights in all pages
+3. change navigation panel in all pages
+4. query of top 5
+5. query of view available favorites
+
+
+
+Nice to have:
+1. Please log in or Welcome, <user_name> message
+2. enable choosing more than one value in each filter in filter channels
+
+
+Extra:
+register, log in, log out
+welcoming message   
+View favorite channels: to make sure the favorite channels are updated properly.
+
+
+i1: R1←R2+R3  
+i2: R2←R1/R4  RAW(R1), WAR(R2)
+i3: R4←R5+R6  WAR(R4), 
+i4: R4←R7*R8  WAW(R4)
+i5: R7←R1+R2  WAR(R7)

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Here are your channels</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Here are your channels</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('filter_channels') }}">Channels</a></li>
+            <!-- Add more navigation links for other functionalities -->
+        </ul>
+    </nav>
+    <section class="container">
+        <table>
+            <tr>
+                <th>SID</th>
+                <th>Name</th>
+                <th>Frequency</th>
+                <th>URL</th>
+                <th>Video Format</th>
+                <th>VPID</th>
+                <th>Paid</th>
+                <th>Language</th>
+                <th>Audio Text</th>
+                <th>Encryption</th>
+                <th>Package</th>
+            </tr>
+            {% for channel in channels %}
+                <tr>
+                    <td>{{ channel[0] }}</td>
+                    <td>{{ channel[1] }}</td>
+                    <td>{{ channel[2] }}</td>
+                    <td>{{ channel[3] }}</td>
+                    <td>{{ channel[4] }}</td>
+                    <td>{{ channel[5] }}</td>
+                    <td>{{ channel[6] }}</td>
+                    <td>{{ channel[7] }}</td>
+                    <td>{{ channel[8] }}</td>
+                    <td>{{ channel[9] }}</td>
+                    <td>{{ channel[10] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer>
+</body>
+</html>

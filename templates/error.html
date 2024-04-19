@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .error {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f44336;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 1.8em;
+            
+        }
+    </style>
+</head>
+<nav>
+    <ul>
+        <li><a href="{{url_for('register') }}">Register</a></li>
+        <li><a href="{{url_for('login')}}">Log in</a> </li>
+        <li><a href="{{ url_for('filter_channels') }}">Channels</a></li>
+        <!-- Add more navigation links for other functionalities -->
+    </ul>
+</nav>
+<body>
+    <div class="container">
+        <h1>Oops! Something went wrong.</h1>
+        <div class="error">
+            <ul>
+                <li>{{ error_message }}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
