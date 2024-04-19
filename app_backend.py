@@ -237,7 +237,7 @@ def validate_user_exists(email):
                 myCursor.execute(query, user_data)
                 result = myCursor.fetchone()
                 if result:
-                    print(result)
+                    # print(result)
                     current_user = result
                     is_logged_in = True
                     return True
@@ -262,7 +262,7 @@ def create_user_favorite_list(user_email, selected_channels):
     # selected_channels: ['!nsert|12603 V', '& TV|4040 H']
 
     # Construct the query string with multiple value sets
-    query = "INSERT INTO User_Channel (user_email, channel_name, frequency) VALUES "
+    query = "INSERT INTO user_channel (user_email, channel_name, frequency) VALUES "
     values = []
     for channel in selected_channels:
         channel = channel.split('|')
@@ -306,7 +306,7 @@ def get_current_user(email):
         if mydb:
             mydb.close()
 def get_user_favorite_list(user_email):
-    query = "select channel_SID, c.Channel_name, c.frequency, channel_url, video_format, vpid, apid, lang, audio_text, channel_encryption, package from  User_Channel as uc inner join channels as c where uc.user_email = %s and uc.channel_name = c.Channel_name and uc.frequency = c.frequency;"
+    query = "select channel_SID, c.Channel_name, c.frequency, channel_url, video_format, vpid, apid, lang, audio_text, channel_encryption, package from  user_channel as uc inner join channels as c where uc.user_email = %s and uc.channel_name = c.Channel_name and uc.frequency = c.frequency;"
     data = (user_email,)
     favorite_list = execute_query(query, data)
     return favorite_list
@@ -317,7 +317,7 @@ def get_top_five_rockets():
     return top_five_rockets
 
 def get_top_five_channels_per_lang():
-    query = "select  lang, sfc.channel_name, count(satellite_name) from channels as c inner join satellite_frequency_channel as sfc on sfc.channel_name = c.Channel_name and sfc.frequency = c.frequency where lang != \"None\" group by lang, sfc.channel_name order by lang, count(satellite_name) desc;"
+    query = "select  lang, sfc.channel_name, count(satellite_name) from channels as c inner join satellite_frequency_channel as sfc on sfc.channel_name = c.Channel_name and sfc.frequency = c.frequency where lang != 'None' group by lang, sfc.channel_name order by lang, count(satellite_name) desc;"
     top_channels = execute_query(query)
     lang_channels = {}
     for channel in top_channels:
@@ -338,7 +338,7 @@ def get_top_five_channels_per_lang():
     return html_output
 
 def get_top_five_satellites():
-    query = "select s.satellite_name, s.launch_date, sum(DATEDIFF(CURRENT_DATE(), s.launch_date)) AS 'Days since launch', count(sfc.channel_name) as 'Number of Channels',  count(sfc.channel_name) / sum(DATEDIFF(CURRENT_DATE(), s.launch_date)) as 'Growth Rate' from satellites s inner join satellite_frequency_channel as sfc on s.satellite_name = sfc.satellite_name group by satellite_name order by count(sfc.channel_name) / sum(DATEDIFF(CURRENT_DATE(), s.launch_date)) desc limit 5;"
+    query = "select s.satellite_name, s.launch_date, (DATEDIFF(CURRENT_DATE(), s.launch_date)) AS 'Days since launch', count(sfc.channel_name) as 'Number of Channels',  count(sfc.channel_name) / (DATEDIFF(CURRENT_DATE(), s.launch_date)) as 'Growth Rate' from satellites s inner join satellite_frequency_channel as sfc on s.satellite_name = sfc.satellite_name group by satellite_name order by count(sfc.channel_name) / (DATEDIFF(CURRENT_DATE(), s.launch_date)) desc limit 5;"
     top_five_satellites = execute_query(query)
     return top_five_satellites
 
