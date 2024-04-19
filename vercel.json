@@ -4,7 +4,6 @@
         { "src": "app.py", "use": "@vercel/py" }
     ],
     "routes": [
-        { "handle": "filesystem" },
         {
             "src": "/(.*)",
             "dest": "app.py"
